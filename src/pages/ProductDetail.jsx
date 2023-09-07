@@ -1,12 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom"; // useParams est un hook qui permet de récupérer les paramètres de l'URL
-import fakeProducts from "../fakeProducts";
+import { useSelector } from "react-redux";
 
 
 
 const ProductDetail = () => {
+  const products = useSelector((state) => state.products);  
   const { id } = useParams(); 
-  const product = fakeProducts.find((product) => product.id === Number(id));
+  const product = products.find((product) => product.id === Number(id));
 
   if (!product) {
     return <div>Produit non trouvé.</div>;
